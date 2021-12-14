@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
-#include "funcExist.c"
 
 void getLine(int *lineNum)
 {
@@ -33,27 +31,4 @@ void getLine(int *lineNum)
     printf("Item Quantity: %s\n",details[2]);
     printf("Item Expiry Date: %s\n",details[3]);
     printf("Item Price: %s\n",details[4]);
-}
-
-void searchItem()
-{
-    int Item_ID;
-    printf("Input Item ID: ");
-    scanf("%d", &Item_ID);
-    if (!(Item_ID >= 11101 && Item_ID <= 69999)) {
-        printf("Item ID is invalid!\n");
-        return;
-    }
-    int lineNum = funcExist(&Item_ID);
-    if (lineNum > 0) {
-        getLine(&lineNum);
-    } else {
-        printf("Item ID does not exist!\n");
-    }
-}
-
-int main(void)
-{
-    searchItem();
-    return 0;
 }
