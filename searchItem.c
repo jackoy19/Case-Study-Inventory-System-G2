@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "funcExist.c"
 
 void searchItem()
 {
@@ -8,11 +9,14 @@ void searchItem()
     scanf("%d", &Item_ID);
     if (!(Item_ID >= 11101 && Item_ID <= 69999))
     {
-        printf("Item ID is invalid!");
+        printf("Item ID is invalid!\n");
         return;
     }
-    funcExist(&Item_ID);
-    printf("Success: %d", Item_ID);
+    if (funcExist(&Item_ID)) {
+        printf("ITEM FOUND: proceed with something");
+    } else {
+        printf("Item ID does not exist!");
+    }
 }
 
 int main(void)

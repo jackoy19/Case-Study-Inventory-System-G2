@@ -13,12 +13,12 @@ int funcExist(int *itemId) {
         //below if compare if the Item_ID is matched on inventory
         if(strcmp(item,strtok(line,",")) == 0) {
             fclose(fptr);
-            printf("Found");
+            // printf("Found\n");
             return 1;
         }
     }
     fclose(fptr);
-    printf("Not Found");
+    // printf("Item ID does not exist!\n");
     return 0;
 }
 
