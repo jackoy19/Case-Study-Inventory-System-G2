@@ -3,6 +3,7 @@
 #include <string.h>
 
 int funcExist(int *itemId) {
+    int foundInLine = 1;
     char item[6];
     sprintf(item,"%d",*itemId); // converts int to char
     FILE *fptr = fopen("inventory.csv", "r"); 
@@ -14,8 +15,9 @@ int funcExist(int *itemId) {
         if(strcmp(item,strtok(line,",")) == 0) {
             fclose(fptr);
             // printf("Found\n");
-            return 1;
+            return foundInLine;
         }
+        foundInLine++;
     }
     fclose(fptr);
     // printf("Item ID does not exist!");
