@@ -14,7 +14,9 @@ int main(){
 		printf("[D] Search Inventory Item\n");
 		printf("[X] Exit Program\n");
  		
- 		scanf("Please input choice: %c", choice);
+ 		printf("\nPlease input choice: ");
+ 		
+ 		scanf(" %c", &choice);
 	
  		switch(choice){
  			case 'A':
