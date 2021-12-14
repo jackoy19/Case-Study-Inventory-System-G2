@@ -13,14 +13,8 @@ void searchItem()
         return;
     }
     if (funcExist(&Item_ID)) {
-        printf("ITEM FOUND: proceed with something");
+        printf("ITEM FOUND: proceed with something\n");
     } else {
-        printf("Item ID does not exist!");
+        printf("Item ID does not exist!\n");
     }
-}
-
-int main(void)
-{
-    searchItem();
-    return 0;
 }
