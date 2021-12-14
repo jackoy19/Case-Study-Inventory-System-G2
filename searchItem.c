@@ -18,9 +18,3 @@ void searchItem()
         printf("Item ID does not exist!");
     }
 }
-
-int main(void)
-{
-    searchItem();
-    return 0;
-}
