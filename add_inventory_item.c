@@ -3,26 +3,6 @@
 #include <conio.h>
 #include <string.h>
 
-int funcExist(int *item_id) {
-    char item[6];
-    sprintf(item,"%d", *item_id); // converts int to char
-    FILE *fptr = fopen("eme.csv", "r"); 
-    char line[120];
-    while (!feof(fptr))  // loop until end of the file
-    {
-        fgets(line, 120, fptr);  //store the whole line in variable line
-        //below if compare if the Item_ID is matched on inventory
-        if(strcmp(item,strtok(line,",")) == 0) {
-            fclose(fptr);
-            // printf("Found\n");
-            return 1;
-        }
-    }
-    fclose(fptr);
-    // printf("Item ID does not exist!");
-    return 0;
-}
-
 int main() {	
 
 	int *item_id, *item_quantity;
@@ -54,7 +34,7 @@ int main() {
 							if(item_price > 0) {
 								
 								FILE *fp;
-    							fp = fopen("eme.csv","a+");
+    							fp = fopen("inventory.csv","a+");
 
 								fprintf(fp, "%d , %s , %d , %s , %lf\n", item_id, item_description, item_quantity, item_expirydate, item_price);
 								
@@ -76,7 +56,7 @@ int main() {
 		}
 		else {
 			inv:
-			printf("Invalid siya bes.");
+			printf("Input value is invalid.");
 		}
 			
 	return 0;
