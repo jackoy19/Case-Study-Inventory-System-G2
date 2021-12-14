@@ -57,11 +57,3 @@ int main(void)
     searchItem();
     return 0;
 }
-
-// int main(){
-//     int itemId;
-//     printf("Enter Item ID: ");
-//     scanf("%d", &itemId);
-//     funcExist(&itemId);
-//     return 0;
-// }
