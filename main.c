@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "searchItem.c"
+#include "searchItem2.c"
 
 int main(){
 	
@@ -25,7 +25,7 @@ int main(){
  				break;
  			case 'C':
  				break;
- 			case 'D': searchItem();
+ 			case 'D': searchItem2();
  				break;
  			case 'X': printf("BYE");
 			 	break;
