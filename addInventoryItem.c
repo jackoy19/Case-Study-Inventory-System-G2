@@ -43,10 +43,7 @@ void addInventoryItem(){
 					}else{
 						goto inv;
 					}
-
-			}
-
-			
+			}	
 		}
 		else {
 			inv:
