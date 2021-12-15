@@ -34,46 +34,40 @@ int main() {
 		exit(1);
 	}
 	char line[80];
-	char details[100][500];
+	char details[1000][30];
 	int xID = 0, xDesc = 10, xQty = 60, xExp = 70, xPri = 90;
-	int counter = 1;
+	
+	int counter = 0;
 	while(fgets(line, sizeof(line), fptr))
 	{
 		char *token;
 		
 		token = strtok(line, ","); //value before comma
+		strcpy(details[counter], token);
 		
-		while(token!= NULL) {
-			for(; counter <=5; counter++){
-				switch(counter){
-				case 1: setx(xID);
-						printf("%s", token);
-						token = strtok(NULL, ",");
-						break;
-				case 2: setx(xDesc);
-						printf("%s", token);
-						token = strtok(NULL, ",");
-						break;
-				case 3: setx(xQty);
-						printf("%s", token);
-						token = strtok(NULL, ",");
-						break;
-				case 4: setx(xExp);
-						printf("%s", token);
-						token = strtok(NULL, ",");
-						break;
-				case 5: setx(xPri);
-						printf("%s", token);
-						token = strtok(NULL, ",");
-						printf("\n");
-						break;
-				default:break;
-				}
-			}
-			
-		}
-		//printf("\n");
+		while( token != NULL ) {
+			strcpy(details[counter++],token);   //copy the each values on the details array
+                token = strtok(NULL, ",");
+        }
 	}
-	getch();
-	
+	for(int x = 1; x <= counter; x++) {
+		for(int counterX = 0; counterX < 5; counterX++) {
+                if(counterX == 0){
+					setxy(xID,counter);
+					printf("%s",details[x]);
+				}else if(counterX == 1){
+					setxy(xDesc,counter);
+					printf("%s",details[x]);
+				}else if(counterX == 2){
+					setxy(xQty,counter);
+					printf("%s",details[x]);
+				}else if(counterX == 3){
+					setxy(xExp,counter);
+					printf("%s",details[x]);
+				}else{
+					setxy(xPri,counter);
+					printf("%s\n",details[x]);
+				}
+		}
+	}
 }
