@@ -1,7 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <conio.h>
+#include <ctype.h>
 
 int main() {
-	FILE *the_file = fopen("Case Study CSV.csv", "r");
+	FILE *the_file = fopen("Inventory_ST_NoBOM.csv", "r");
 	if (the_file == NULL){
 		perror("unable to open the file.");
 		exit(1);
@@ -12,11 +16,11 @@ int main() {
 	{
 		char *token;
 		
-		token = strtok(line, ",");
+		token = strtok(line, "\",\"");
 		
 		while(token!= NULL) {
 			printf("%s", token);
-			token = strtok(NULL, ",");
+			token = strtok(NULL, "\",\"");
 		}
 		printf("\n");
 	}
