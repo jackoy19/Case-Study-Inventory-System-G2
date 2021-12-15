@@ -1,4 +1,10 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "funcExist.c"
+#include "getLine.c"
 #define BUFFER_SIZE 1000
+
 void updateItem(){
 	
 	int Item_ID;
@@ -35,7 +41,7 @@ void updateItem(){
     /* Remove extra new line character from stdin */
     fflush(stdin);
 
-    int item_id, item_quantity = 0;
+    int item_id, item_quantity;
 	char item_description[50], item_expirydate[50];
 	char temp;
 	char *itdp=item_description, *itep=item_expirydate;
@@ -46,8 +52,6 @@ void updateItem(){
 		if ((item_id >= 11101) && (item_id <= 69999)) {
 			if ((funcExist(&item_id) > 0) && (item_id != Item_ID)) {
 				printf("\nItem ID already exists in inventory!\n\n");
-				fclose(fptr);
-				fclose(ftemp);
 			}
 			else {
 				printf("Input Item Description: ");
@@ -65,9 +69,13 @@ void updateItem(){
 						scanf("%lf", &item_price);
 							if(item_price > 0) {
 								
+								
+
                                 char all[1000];
-                                snprintf(all, 1000, "%d,%s,%d,%s,%.2lf\n", item_id, item_description, item_quantity, item_expirydate, item_price);
-                                
+                                snprintf(all, 1000, "\n%d,%c,%d,%c,%lf", item_id, item_description, item_quantity, item_expirydate, item_price);
+                                printf(all);    
+                                    //fgets(buffer, BUFFER_SIZE, all);
+ 
                                     count = 0;
                                     while ((fgets(buffer, BUFFER_SIZE, fptr)) != NULL)
                                     {
@@ -78,7 +86,6 @@ void updateItem(){
                                         else
                                             fputs(buffer, ftemp);
                                     }
-                                   
                                     /* Close all files to release resource */
                                     fclose(fptr);
                                     fclose(ftemp);
@@ -91,7 +98,10 @@ void updateItem(){
                                 
                                     //printf("\nSuccessfully replaced '%d' line with '%s'.", lineNum, newline);
 
-								printf("\nAn item has been successfully updated!\n\n");
+								printf("\nAn item has been successfully updated!");
+								
+							
+								
 								return;
 							}else{
 								goto inv;
@@ -99,10 +109,20 @@ void updateItem(){
 					}else{
 						goto inv;
 					}
+
 			}
+
+			
 		}
 		else {
 			inv:
 			printf("Input value is invalid.");
 		}
+
+    
+}
+
+int main(){
+    updateItem();
+    return 0;
 }
