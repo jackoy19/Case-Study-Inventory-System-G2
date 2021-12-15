@@ -69,8 +69,10 @@ void updateItem(){
 						scanf("%lf", &item_price);
 							if(item_price > 0) {
 								
+								
+
                                 char all[1000];
-                                snprintf(all, 1000, "%d,%s,%d,%s,%.2lf", item_id, item_description, item_quantity, item_expirydate, item_price);
+                                snprintf(all, 1000, "\n%d,%c,%d,%c,%lf", item_id, item_description, item_quantity, item_expirydate, item_price);
                                 printf(all);    
                                     //fgets(buffer, BUFFER_SIZE, all);
  
@@ -84,7 +86,6 @@ void updateItem(){
                                         else
                                             fputs(buffer, ftemp);
                                     }
-                                    printf("UPDATE SUCCESSFUL!");
                                     /* Close all files to release resource */
                                     fclose(fptr);
                                     fclose(ftemp);
