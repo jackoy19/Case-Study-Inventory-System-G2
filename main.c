@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
 #include "funcExist.c"
 #include "getLine.c"
+#include "addInventoryItem.c"
 #include "searchItem.c"
 #include "updateItem.c"
 
@@ -23,7 +25,7 @@ int main(){
  		scanf(" %c", &choice);
 	
  		switch(choice){
- 			case 'A':
+ 			case 'A': addInventoryItem();
  				break;
  			case 'B': updateItem();
  				break;

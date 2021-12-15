@@ -2,20 +2,21 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+#include "funcExist.c"
 
-int main() {	
+int main() {
 
-	int *item_id, *item_quantity;
+	int item_id, item_quantity;
 	char item_description[50], item_expirydate[50];
 	char temp;
 	char *itdp=item_description, *itep=item_expirydate;
-	double *item_price;
+	double item_price;
 	
 	printf("Input Item ID: ");
 	scanf("%d", &item_id);
 		if ((item_id >= 11101) && (item_id <= 69999)) {
-			if (funcExist == 1) {
-				printf("Item ID already exists in inventory!");
+			if (funcExist(&item_id) > 0) {
+				printf("\nItem ID already exists in inventory!\n\n");
 			}
 			else {
 				printf("Input Item Description: ");
@@ -36,7 +37,7 @@ int main() {
 								FILE *fp;
     							fp = fopen("inventory.csv","a+");
 
-								fprintf(fp, "%d , %s , %d , %s , %lf\n", item_id, item_description, item_quantity, item_expirydate, item_price);
+								fprintf(fp,"\n%d,%s,%d,%s,%.2lf", item_id, item_description, item_quantity, item_expirydate, item_price);
 								
 								printf("\nNew item has been added.");
 								
