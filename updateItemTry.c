@@ -23,13 +23,21 @@ void updateItem(){
 
 	/* File pointer to hold reference of input file */
     FILE *fptr = fopen("inventory.csv", "r");
-    FILE *fTemp = fopen("replace.tmp", "w");
+    FILE *ftemp = fopen("replace.tmp", "w");
     char path[100];
     
     
     char buffer[BUFFER_SIZE];
     int count;
- 
+    /* fopen() return NULL if unable to open file in given mode. */
+    if (fptr == NULL || ftemp == NULL)
+    {
+        /* Unable to open file hence exit */
+        printf("\nUnable to open file.\n");
+        printf("Please check whether file exists and you have read/write privilege.\n");
+        exit(EXIT_SUCCESS);
+    }
+
     /* Remove extra new line character from stdin */
     fflush(stdin);
 
@@ -61,8 +69,7 @@ void updateItem(){
 						scanf("%lf", &item_price);
 							if(item_price > 0) {
 								
-								FILE *fp;
-    							fp = fopen("inventory.csv","a+");
+								
 
                                 char all[1000];
                                 snprintf(all, 1000, "\n%d,%c,%d,%c,%lf", item_id, item_description, item_quantity, item_expirydate, item_price);
@@ -75,13 +82,13 @@ void updateItem(){
                                         count++;
                                         /* If current line is line to replace */
                                         if (count == lineNum)
-                                            fputs(all, fTemp);
+                                            fputs(all, ftemp);
                                         else
-                                            fputs(buffer, fTemp);
+                                            fputs(buffer, ftemp);
                                     }
                                     /* Close all files to release resource */
                                     fclose(fptr);
-                                    fclose(fTemp);
+                                    fclose(ftemp);
 
                                     /* Delete original source file */
                                     remove("inventory.csv");
@@ -93,7 +100,7 @@ void updateItem(){
 
 								printf("\nAn item has been successfully updated!");
 								
-								fclose(fp);
+							
 								
 								return;
 							}else{
