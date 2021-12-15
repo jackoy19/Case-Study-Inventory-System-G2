@@ -8,6 +8,7 @@
 #include "addInventoryItem.c"
 #include "searchItem.c"
 #include "updateItem.c"
+#include "viewInvList.c"
 
 int main(){
 	
@@ -33,11 +34,12 @@ int main(){
  				break;
  			case 'B': updateItem();
  				break;
- 			case 'C':
+ 			case 'C': viewInvList();
+			 		  printf("\n");
  				break;
  			case 'D': searchItem();
  				break;
-			case 'X': printf("TERMINATED");
+			case 'X': printf("TERMINATED\n");
 			 	break;
 			default: printf("\nPlease input valid choice!\n\n");
  				break;
