@@ -22,11 +22,12 @@ void setxy (int x, int y)
 
 int main() {
 
-	setx(0); printf("Item ID");
-    setx(10); printf("Description");
-    setx(60); printf("Quantity");
-    setx(70); printf("Expiry Date");
-    setx(90); printf("Price\n");
+	int xID = 0, xDesc = 10, xQty = 50, xExp = 60, xPri = 80;
+	setx(xID); printf("Item ID");
+    setx(xDesc); printf("Description");
+    setx(xQty); printf("Quantity");
+    setx(xExp); printf("Expiry Date");
+    setx(xPri); printf("Price\n");
 
 	FILE *fptr = fopen("inventory.csv", "r");
 	if (fptr == NULL){
@@ -34,8 +35,8 @@ int main() {
 		exit(1);
 	}
 	char line[80];
-	char details[1000][30];
-	int xID = 0, xDesc = 10, xQty = 60, xExp = 70, xPri = 90;
+	char details[500][30];
+	
 	
 	int counter = 0;
 	while(fgets(line, sizeof(line), fptr))
@@ -50,24 +51,30 @@ int main() {
                 token = strtok(NULL, ",");
         }
 	}
-	for(int x = 1; x <= counter; x++) {
+	int lineNumber = 0;
+	for(int y = 1; y <= counter; y++) {
 		for(int counterX = 0; counterX < 5; counterX++) {
                 if(counterX == 0){
-					setxy(xID,counter);
-					printf("%s",details[x]);
+					setxy(xID,y);
+					printf("%s",details[lineNumber]);
+					lineNumber++;
 				}else if(counterX == 1){
-					setxy(xDesc,counter);
-					printf("%s",details[x]);
+					setxy(xDesc,y);
+					printf("%s",details[lineNumber]);
+					lineNumber++;
 				}else if(counterX == 2){
-					setxy(xQty,counter);
-					printf("%s",details[x]);
+					setxy(xQty,y);
+					printf("%s",details[lineNumber]);
+					lineNumber++;
 				}else if(counterX == 3){
-					setxy(xExp,counter);
-					printf("%s",details[x]);
+					setxy(xExp,y);
+					printf("%s",details[lineNumber]);
+					lineNumber++;
 				}else{
-					setxy(xPri,counter);
-					printf("%s\n",details[x]);
+					setxy(xPri,y);
+					printf("%s",details[lineNumber]);
+					lineNumber++;
 				}
-		}
+		}printf("\n");
 	}
 }
