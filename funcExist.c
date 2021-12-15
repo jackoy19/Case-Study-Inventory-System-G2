@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 int funcExist(int *itemId) {
     int foundInLine = 1;
     char item[6];

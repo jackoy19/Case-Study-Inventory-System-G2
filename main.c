@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "funcExist.c"
+#include "getLine.c"
 #include "searchItem.c"
+#include "updateItem.c"
 
 int main(){
 	
@@ -21,7 +25,7 @@ int main(){
  		switch(choice){
  			case 'A':
  				break;
- 			case 'B':
+ 			case 'B': updateItem();
  				break;
  			case 'C':
  				break;

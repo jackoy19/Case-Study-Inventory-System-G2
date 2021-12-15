@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "funcExist.c"
-#include "getLine.c"
-
 void searchItem()
 {
     int Item_ID;
