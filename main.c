@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
+#include <ctype.h>
 #include "funcExist.c"
 #include "getLine.c"
 #include "addInventoryItem.c"
@@ -10,7 +11,7 @@
 
 int main(){
 	
-	char choice = ' ';
+	char choice[2];
 	
 	do{
 		printf("MAIN MENU\n");
@@ -22,9 +23,12 @@ int main(){
  		
  		printf("\nPlease input choice: ");
  		
- 		scanf(" %c", &choice);
-	
- 		switch(choice){
+ 		scanf(" %s", &choice[0]);
+
+		if(strlen(choice)>1){
+			printf("\nPlease input valid choice!\n\n");
+		}else{
+			switch(toupper(choice[0])){
  			case 'A': addInventoryItem();
  				break;
  			case 'B': updateItem();
@@ -33,12 +37,12 @@ int main(){
  				break;
  			case 'D': searchItem();
  				break;
- 			case 'X': printf("BYE");
+			case 'X': printf("TERMINATED");
 			 	break;
-			default: printf("Please input valid choice!");
+			default: printf("\nPlease input valid choice!\n\n");
  				break;
-		}
-		
-	}while(choice != 'X');
-	
+			}
+		}	
+	}
+	while(toupper(choice[0]) != 'X');	
 }
