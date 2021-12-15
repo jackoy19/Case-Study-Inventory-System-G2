@@ -9,7 +9,6 @@ int main() {
 	int item_id, item_quantity;
 	char item_description[50], item_expirydate[50];
 	char temp;
-	char *itdp=item_description, *itep=item_expirydate;
 	double item_price;
 	
 	printf("Input Item ID: ");
@@ -25,7 +24,7 @@ int main() {
 				item_description[strcspn(item_description, "\n")] = 0;
 				printf("Input Quantity: ");
 				scanf("%d", &item_quantity);
-					if(item_quantity >= 1) {
+					if((item_quantity >= 1) && (item_quantity <= 1000000)) {
 						printf("Input Expiry Date: ");
 						scanf("%c", &temp);
 						fgets(item_expirydate, 50, stdin);
