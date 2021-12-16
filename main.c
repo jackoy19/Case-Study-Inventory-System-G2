@@ -23,7 +23,7 @@ int main(){
 		printf("[X] Exit Program\n");
  		
  		printf("\nPlease input choice: ");
- 		
+ 		fflush(stdin);
  		scanf(" %s", &choice[0]);
 
 		if(strlen(choice)>1){
