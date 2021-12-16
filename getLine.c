@@ -27,5 +27,5 @@ void getLine(int *lineNum)
     printf("Item Description: %s\n",details[1]);
     printf("Item Quantity: %s\n",details[2]);
     printf("Item Expiry Date: %s\n",details[3]);
-    printf("Item Price: %s\n\n",details[4]);
+    printf("Item Price: %s\n",details[4]);
 }
