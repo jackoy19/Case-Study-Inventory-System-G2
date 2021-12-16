@@ -4,9 +4,13 @@ void addInventoryItem(){
 	char temp;
 	char *itdp=item_description, *itep=item_expirydate;
 	double item_price;
-	
+	char input[6];
+
+	fflush(stdin);
 	printf("Input Item ID: ");
-	scanf("%d", &item_id);
+	fgets(input,7,stdin);
+	item_id = atoi(input);
+
 		if ((item_id >= 11101) && (item_id <= 69999)) {
 			if (funcExist(&item_id) > 0) {
 				printf("\nItem ID already exists in inventory!\n\n");
@@ -47,6 +51,6 @@ void addInventoryItem(){
 		}
 		else {
 			inv:
-			printf("Input value is invalid.");
+			printf("Input value is invalid.\n");
 		}
 }
