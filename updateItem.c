@@ -16,7 +16,7 @@ void updateItem(){
     }
 
 	/* File pointer to hold reference of input file */
-    FILE *fptr = fopen("inventory.csv", "r");
+    FILE *fptr = fopen("Inventory_ST_NoQuote_NoBOM.csv", "r");
     FILE *ftemp = fopen("replace.tmp", "w");
     char path[100];
     
@@ -84,10 +84,10 @@ void updateItem(){
                                     fclose(ftemp);
 
                                     /* Delete original source file */
-                                    remove("inventory.csv");
+                                    remove("Inventory_ST_NoQuote_NoBOM.csv");
                                 
                                     /* Rename temporary file as original file */
-                                    rename("replace.tmp", "inventory.csv");
+                                    rename("replace.tmp", "Inventory_ST_NoQuote_NoBOM.csv");
                                 
                                     //printf("\nSuccessfully replaced '%d' line with '%s'.", lineNum, newline);
 
