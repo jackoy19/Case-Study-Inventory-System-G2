@@ -1,78 +1,32 @@
-#include <windows.h>
-#include <string.h>
-#include <conio.h>
 #include <stdio.h>
-COORD c = {0, 0};
+#include <stdlib.h>
+#include <string.h>
 
-void setx (int x)
+void viewInvList()
 {
- c.X = x; // Set X and Y coordinates
- SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
-}
+	int lineOnFile = 1;
+	FILE *fptr = fopen("Inventory_ST_NoQuote_NoBOM.csv", "r");
+	char line[255];
+	int i = 0;
+	char details[5][120];
 
-void setxy (int x, int y)
-{
- c.Y = y;
- c.X = x; // Set X and Y coordinates
- SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), c);
-}
+	//header
+	printf("%-12s %-35s %-15s %-15s %-s\n", "Item ID", "Description", "Quantity", "Expiry Date", "Price");
+	//Reading of File
 
-void viewInvList(){
-
-    int xID = 0, xDesc = 10, xQty = 50, xExp = 60, xPri = 80;
-	setx(xID); printf("Item ID");
-    setx(xDesc); printf("Description");
-    setx(xQty); printf("Quantity");
-    setx(xExp); printf("Expiry Date");
-    setx(xPri); printf("Price\n");
-
-	FILE *fptr = fopen("inventory.csv", "r");
-	if (fptr == NULL){
-		perror("unable to open the file.");
-		exit(1);
-	}
-	char line[80];
-	char details[500][30];
-
-	int counter = 0;
-    int lineCounter = 0;
-	while(fgets(line, sizeof(line), fptr))
+	while (!feof(fptr)) // loop until end of the file
 	{
-		char *token;
-		
-		token = strtok(line, ","); //value before comma
-		strcpy(details[counter], token);
-		
-		while( token != NULL ) {
-			strcpy(details[counter++],token);   //copy the each values on the details array
-                token = strtok(NULL, ",");
-        }
-        lineCounter++;
+		fgets(line, sizeof(line), fptr);
+
+		char *lineptr = strtok(line, ","); // Split the string by using comma delimeter
+		for (; i < 5; i++)
+		{
+			strcpy(details[i], lineptr); //copy the each values on the details array
+			lineptr = strtok(NULL, ",");
+		}
+		printf("%-12s %-35s %-15s %-15s %s", details[0], details[1], details[2], details[3], details[4]);
+		i = 0;
 	}
-	int lineNumber = 0;
-	for(int y = 1; y <= lineCounter; y++) {
-		for(int counterX = 0; counterX < 5; counterX++) {
-                if(counterX == 0){
-					setxy(xID,y);
-					printf("%s",details[lineNumber]);
-					lineNumber++;
-				}else if(counterX == 1){
-					setxy(xDesc,y);
-					printf("%s",details[lineNumber]);
-					lineNumber++;
-				}else if(counterX == 2){
-					setxy(xQty,y);
-					printf("%s",details[lineNumber]);
-					lineNumber++;
-				}else if(counterX == 3){
-					setxy(xExp,y);
-					printf("%s",details[lineNumber]);
-					lineNumber++;
-				}else{
-					setxy(xPri,y);
-					printf("%s",details[lineNumber]);
-					lineNumber++;
-				}
-		}printf("\n");
-	}
+	printf("\n");
+	fclose(fptr);
 }
