@@ -9,6 +9,7 @@
 #include "searchItem.c"
 #include "updateItem.c"
 #include "viewInvList.c"
+#include "EXPI_viewInvList.c" // EXPERIMENTAL
 
 int main(){
 	
@@ -35,7 +36,7 @@ int main(){
  				break;
  			case 'B': updateItem();
  				break;
- 			case 'C': viewInvList();
+ 			case 'C': EXPI_viewInvList();
 			 		  printf("\n");
  				break;
  			case 'D': searchItem();
