@@ -11,10 +11,10 @@ void getLine(int *lineNum)
         fgets(line, 255, fptr);
         if (*lineNum == lineOnFile)
         {
-            char *lineptr = strtok(line, ","); // Split the string by using comma delimeter
+            char *lineptr = strtok(line, "\",\""); // Split the string by using comma delimeter
             for(;i<5;i++) {
                 strcpy(details[i],lineptr);   //copy the each values on the details array
-                lineptr = strtok(NULL, ",");
+                lineptr = strtok(NULL, "\",\"");
             }
             fclose(fptr);
             break;

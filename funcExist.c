@@ -8,7 +8,7 @@ int funcExist(int *itemId) {
     {
         fgets(line, 120, fptr);  //store the whole line in variable line
         //below if compare if the Item_ID is matched on inventory
-        if(strcmp(item,strtok(line,",")) == 0) {
+        if(strcmp(item,strtok(line,"\",\"")) == 0) {
             fclose(fptr);
             // printf("Found\n");
             return foundInLine;
