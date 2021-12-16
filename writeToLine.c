@@ -24,7 +24,7 @@ void writeToLine(char *myString, int *lineNum)
     while ((fgets(buffer, 1000, fptr)) != NULL)
     {
         count++;
-        /* If current line is line to replace */
+        
         if (count == *lineNum)
         {
             fprintf(ftemp,"%s",myString);

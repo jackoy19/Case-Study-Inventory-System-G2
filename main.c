@@ -13,6 +13,7 @@
 int main(){
 	
 	char choice[4];
+	int len;
 	
 	do{
 		printf("MAIN MENU\n");
@@ -28,6 +29,7 @@ int main(){
 
 		fgets(choice,4,stdin);
 		int len = strcspn(choice, "\r\n");
+		
 		if(len > 1 || choice == NULL){
 			printf("\nPlease input valid choice!\n\n");
 		} else {
@@ -43,12 +45,12 @@ int main(){
 					break;
 				case 'D': searchItem();
 					break;
-				case 'X': printf("TERMINATED\n");
+				case 'X': printf("TERMINATED");
 					break;
 				default: printf("Please input valid choice!\n\n");
 					break;
 			}
 		}
 	}
-	while(toupper(choice[strcspn(choice,"\r\n") - 1]) != 'X');	
+	while(toupper(choice[strcspn(choice,"\r\n") - 1]) != 'X' || strcspn(choice, "\r\n") > 1);	
 }

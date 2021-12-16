@@ -32,8 +32,8 @@ void addInventoryItem(){
 				printf("Input Item Price: ");
 				scanf("%lf", &item_price);
 				if (item_price > 0) {
-
-					int lineNum = getPositionSort(&item_id);
+					
+					int lineNum = getPositionSort(&item_id); //get Line number position on inventory file
 
 					FILE *fp;
 					fp = fopen("Inventory_ST_NoQuote_NoBOM.csv", "a+");
@@ -41,6 +41,8 @@ void addInventoryItem(){
 					char all[1000];
                     snprintf(all,256,"%d,%s,%d,%s,%.2lf\n", item_id, item_description, item_quantity, item_expirydate, item_price);
 
+					/* Write in the line number it returns, if Item Id to be added 
+					  is highest number(lineNum returns 0) add on the bottom */
 					if (lineNum > 0) {
 						fclose(fp);
 						writeToLine(all,&lineNum);

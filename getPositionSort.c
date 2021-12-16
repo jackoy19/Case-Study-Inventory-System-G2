@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+/* This function Returns what line on the file it will be added, 
+  returns 0 if Item iD is the highest number in inventory */
 int getPositionSort(int* item_id){
     int lineOnFile = 1;
     FILE *fptr = fopen("Inventory_ST_NoQuote_NoBOM.csv", "r");
@@ -11,11 +12,13 @@ int getPositionSort(int* item_id){
 
     while (!feof(fptr)) {
         fgets(line, 256, fptr);  //store all of line
-        //below if compare if the Item_ID is matched on inventory
+        
+        //store item id on item var
         char* lineptr = strtok(line, ",");
         strcpy(item,lineptr);
 
         int itemInFile = atoi(item);
+        //compare item ID to be added with each id on the inventory
         if(*item_id < itemInFile) {
             fclose(fptr);
             return lineOnFile;
@@ -25,11 +28,3 @@ int getPositionSort(int* item_id){
     fclose(fptr);
     return 0;
 }
-
-
-// int main(){
-//     int x = 62116;
-//     int pos = getPositionSort(&x);
-//     printf("%d\n",pos);
-//     return 0;
-// }
