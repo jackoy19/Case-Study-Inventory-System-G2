@@ -36,7 +36,7 @@ int main() {
 								FILE *fp;
     							fp = fopen("inventory.csv","a+");
 
-								fprintf(fp,"\n%d,%s,%d,%s,%.2lf", item_id, item_description, item_quantity, item_expirydate, item_price);
+								fprintf(fp,"\n\"%d\",\"%s\",\"%d\",\"%s\",\"%.2lf\"", item_id, item_description, item_quantity, item_expirydate, item_price);
 								
 								printf("\nNew item has been added.");
 								
