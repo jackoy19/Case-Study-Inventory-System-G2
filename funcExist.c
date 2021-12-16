@@ -2,7 +2,7 @@ int funcExist(int *itemId) {
     int foundInLine = 1;
     char item[6];
     sprintf(item,"%d",*itemId); // converts int to char
-    FILE *fptr = fopen("inventory.csv", "r"); 
+    FILE *fptr = fopen("Inventory_ST_NoQuote_NoBOM.csv", "r"); 
     char line[120];
     while (!feof(fptr))  // loop until end of the file
     {
