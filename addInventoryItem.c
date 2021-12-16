@@ -22,7 +22,7 @@ void addInventoryItem(){
 				item_description[strcspn(item_description, "\n")] = 0;
 				printf("Input Quantity: ");
 				scanf("%d", &item_quantity);
-					if(item_quantity >= 1) {
+					if(item_quantity >= 0 && (item_quantity <= 1000000)) {
 						printf("Input Expiry Date :");
 						scanf("%c", &temp);
 						fgets(item_expirydate, 50, stdin);
