@@ -32,7 +32,7 @@ void addInventoryItem(){
 							if(item_price > 0) {
 								
 								FILE *fp;
-    							fp = fopen("inventory.csv","a+");
+    							fp = fopen("Inventory_ST_NoQuote_NoBOM.csv","a+");
 
 								fprintf(fp,"\n\"%d\",\"%s\",\"%d\",\"%s\",\"%.2lf\"", item_id, item_description, item_quantity, item_expirydate, item_price);
 								
