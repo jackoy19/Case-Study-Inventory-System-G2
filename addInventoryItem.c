@@ -25,7 +25,7 @@ void addInventoryItem(){
 			printf("Input Quantity: ");
 			scanf("%d", &item_quantity);
 			if (item_quantity >= 0 && (item_quantity <= 1000000)) {
-				printf("Input Expiry Date: yyyy-mm-dd or -:");
+				printf("Input Expiry Date (yyyy-mm-dd or -): ");
 				scanf("%c", &temp);
 				fgets(item_expirydate, 50, stdin);
 				item_expirydate[strcspn(item_expirydate, "\n")] = 0;
