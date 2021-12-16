@@ -11,11 +11,7 @@ void updateItem(){
     int lineNum = funcExist(&Item_ID);
     if (lineNum > 0) {
         getLine(&lineNum);
-    } else {
-        printf("Item ID does not exist!\n");
-    }
-
-	/* File pointer to hold reference of input file */
+        /* File pointer to hold reference of input file */
     FILE *fptr = fopen("Inventory_ST_NoQuote_NoBOM.csv", "r");
     FILE *ftemp = fopen("replace.tmp", "w");
     char path[100];
@@ -105,4 +101,10 @@ void updateItem(){
 			inv:
 			printf("Input value is invalid.");
 		}
+
+    } else {
+        printf("Item ID does not exist!\n");
+    }
+
+	
 }
