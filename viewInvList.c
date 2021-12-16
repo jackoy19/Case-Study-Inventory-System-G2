@@ -11,7 +11,7 @@ void viewInvList()
 	char details[5][120];
 
 	//header
-	printf("%-12s %-35s %-15s %-15s %-s\n", "Item ID", "Description", "Quantity", "Expiry Date", "Price");
+	printf("%-9s %-39s %-9s %-19s %-s\n", "Item ID", "Description", "Quantity", "Expiry Date", "Price");
 	//Reading of File
 
 	while (!feof(fptr)) // loop until end of the file
@@ -24,7 +24,7 @@ void viewInvList()
 			strcpy(details[i], lineptr); //copy the each values on the details array
 			lineptr = strtok(NULL, ",");
 		}
-		printf("%-12s %-35s %-15s %-15s %s", details[0], details[1], details[2], details[3], details[4]);
+		printf("%-9s %-39s %-9s %-19s %-s", details[0], details[1], details[2], details[3], details[4]);
 		i = 0;
 	}
 	printf("\n");
