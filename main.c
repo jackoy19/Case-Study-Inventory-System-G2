@@ -25,11 +25,12 @@ int main(){
  		printf("\nPlease input choice: ");
  		fflush(stdin);
  		// scanf(" %s", &choice[0]);
-		fgets(choice,2,stdin);
+		fgets(choice,3,stdin);
 		
-		if(strlen(choice)> 1 || choice == NULL){
+		if(strlen(choice) > 1 || choice == NULL){
 			printf("\nPlease input valid choice!\n\n");
-		}else{
+			continue;
+		}
 			switch(toupper(choice[0])){
  			case 'A': addInventoryItem();
  				break;
@@ -45,7 +46,7 @@ int main(){
 			default: printf("\nPlease input valid choice!\n\n");
  				break;
 			}
-		}	
+		
 	}
 	while(toupper(choice[0]) != 'X');	
 }
