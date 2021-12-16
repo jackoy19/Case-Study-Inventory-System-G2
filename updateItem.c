@@ -99,6 +99,8 @@ void updateItem(){
 		}
 		else {
 			inv:
+            fclose(fptr);
+            fclose(ftemp);
 			printf("Input value is invalid.");
 		}
 
