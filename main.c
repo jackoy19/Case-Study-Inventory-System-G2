@@ -27,26 +27,28 @@ int main(){
  		// scanf(" %s", &choice[0]);
 
 		fgets(choice,4,stdin);
-		int len = strlen(choice);
-		if(len > 2 || choice == NULL){
+		int len = strcspn(choice, "\r\n");
+		if(len > 1 || choice == NULL){
 			printf("\nPlease input valid choice!\n\n");
 		} else {
+			printf("\n");
+
 			switch(toupper(choice[0])){
- 			case 'A': addInventoryItem();
- 				break;
- 			case 'B': updateItem();
- 				break;
- 			case 'C': viewInvList();
-			 		  printf("\n");
- 				break;
- 			case 'D': searchItem();
- 				break;
-			case 'X': printf("TERMINATED\n");
-			 	break;
-			default: printf("\nPlease input valid choice!\n\n");
- 				break;
+				case 'A': addInventoryItem();
+					break;
+				case 'B': updateItem();
+					break;
+				case 'C': viewInvList();
+						printf("\n");
+					break;
+				case 'D': searchItem();
+					break;
+				case 'X': printf("TERMINATED\n");
+					break;
+				default: printf("\nPlease input valid choice!\n\n");
+					break;
 			}
 		}
 	}
-	while(toupper(choice[0]) != 'X');	
+	while(toupper(choice[strcspn(choice,"\r\n") - 1]) != 'X');	
 }
