@@ -45,7 +45,7 @@ int main(){
 					break;
 				case 'X': printf("TERMINATED\n");
 					break;
-				default: printf("\nPlease input valid choice!\n\n");
+				default: printf("Please input valid choice!\n\n");
 					break;
 			}
 		}
