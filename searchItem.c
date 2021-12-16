@@ -18,6 +18,6 @@ void searchItem()
     if (lineNum > 0) {
         getLine(&lineNum);
     } else {
-        printf("Item ID does not exist!\n");
+        printf("\nItem ID does not exist!\n\n");
     }
 }
