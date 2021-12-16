@@ -12,7 +12,7 @@
 
 int main(){
 	
-	char choice[3];
+	char choice[4];
 	
 	do{
 		printf("MAIN MENU\n");
@@ -25,9 +25,10 @@ int main(){
  		printf("\nPlease input choice: ");
  		fflush(stdin);
  		// scanf(" %s", &choice[0]);
-		fgets(choice,3,stdin);
 
-		if(strlen(choice) > 1 || choice == NULL){
+		fgets(choice,4,stdin);
+		int len = strlen(choice);
+		if(len > 2 || choice == NULL){
 			printf("\nPlease input valid choice!\n\n");
 		} else {
 			switch(toupper(choice[0])){
