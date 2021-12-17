@@ -40,15 +40,46 @@ void addInventoryItem()
 			if (itemquantity >= 0)
 			{
 				printf("Input Expiry Date (yyyy-mm-dd or -): ");
-				scanf("%c", &temp);
+				// scanf("%c", &temp);
+				fflush(stdin);
 				fgets(item_expirydate, 50, stdin);
 				item_expirydate[strcspn(item_expirydate, "\n")] = 0;
+				length = strlen(item_expirydate);
+				if (length != 1 && length != 10) {
+					goto inv;
+				}
+				for (i = 0; i < length; i++)
+				{
+					if (i == 4 || i == 7)
+					{
+						if (item_expirydate[i] != '-')
+						{
+							goto inv;
+						}
+					}
+					else if (i <= 3)
+					{
+						if (! (isdigit(item_expirydate[i]) ) )
+						{
+							goto inv;
+						}
+					}
+					else if (i <= 9)
+					{
+						if (! (isdigit(item_expirydate[i]) ) )
+						{
+							goto inv;
+						}
+					}
+				}
+
 				printf("Input Item Price: ");
 				scanf("%s", item_price);
 				length = strlen(item_price);
 
 				// returns false if position of period in the input is different
-				if (! (strchr( input, '.' ) - strrchr( input, '.' ) )  == 0 ) {
+				if (!(strchr(input, '.') - strrchr(input, '.')) == 0)
+				{
 					goto inv;
 				}
 
@@ -57,7 +88,7 @@ void addInventoryItem()
 					{
 						goto inv;
 					}
-				
+
 				double itemprice = atof(item_price);
 				if (itemprice > 0)
 				{
