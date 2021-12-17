@@ -42,7 +42,7 @@ void updateItem()
         char item_description[50], item_expirydate[50];
         char temp;
         char *itdp = item_description, *itep = item_expirydate;
-        double item_price;
+        char item_price[100] = "";
         char item_quantity[100] = "";
         int length, i;
 
@@ -73,6 +73,7 @@ void updateItem()
                         exit(1);
                     }
                 }
+                int itemquantity = atoi(item_quantity);
                 if (item_quantity >= 0)
                 {
                     printf("Input Expiry Date (yyyy-mm-dd or -): ");
@@ -81,10 +82,12 @@ void updateItem()
                     fgets(item_expirydate, 50, stdin);
                     item_expirydate[strcspn(item_expirydate, "\n")] = 0;
                     length = strlen(item_expirydate);
-                    if (length != 1 && length != 10) {
+                    if (length != 1 && length != 10)
+                    {
                         goto inv;
                     }
-                    if(length == 1 && item_expirydate[0] == '-'){
+                    if (length == 1 && item_expirydate[0] == '-')
+                    {
                         goto jump;
                     }
                     for (i = 0; i < length; i++)
@@ -98,16 +101,31 @@ void updateItem()
                         }
                         else if (i <= 3 || i <= 9)
                         {
-                            if (! (isdigit(item_expirydate[i]) ) )
+                            if (!(isdigit(item_expirydate[i])))
                             {
                                 goto inv;
                             }
                         }
                     }
-                    jump:
+                jump:
                     printf("Input Item Price: ");
-                    scanf("%lf", &item_price);
-                    if (item_price > 0)
+                    scanf("%s", item_price);
+                    length = strlen(item_price);
+
+                    // returns false if position of period in the input is different
+                    if (!(strchr(input, '.') - strrchr(input, '.')) == 0)
+                    {
+                        goto inv;
+                    }
+
+                    for (i = 0; i < length; i++)
+                        if (!(isdigit(item_price[i]) || '.' == item_price[i]))
+                        {
+                            goto inv;
+                        }
+
+                    double itemprice = atof(item_price);
+                    if (itemprice > 0)
                     {
 
                         char all[1000];
