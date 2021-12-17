@@ -45,12 +45,9 @@ void addInventoryItem()
 				fgets(item_expirydate, 50, stdin);
 				item_expirydate[strcspn(item_expirydate, "\n")] = 0;
 				length = strlen(item_expirydate);
-
 				if (length != 1 && length != 10) {
 					goto inv;
 				}
-				
-				if (length == 10) {
 				for (i = 0; i < length; i++)
 				{
 					if (i == 4 || i == 7)
@@ -75,7 +72,6 @@ void addInventoryItem()
 						}
 					}
 				}
-				} 
 
 				printf("Input Item Price: ");
 				scanf("%s", item_price);
