@@ -4,7 +4,7 @@
 void addInventoryItem()
 {
 	int item_id;
-	char item_description[50], item_expirydate[50];
+	char item_description[41], item_expirydate[50];
 	char temp;
 	char item_price[100] = "";
 	char input[6];
@@ -26,7 +26,7 @@ void addInventoryItem()
 		{
 			printf("Input Item Description: ");
 			// scanf("%c", &temp);
-			fgets(item_description, 50, stdin);
+			fgets(item_description, 41, stdin);
 			item_description[strcspn(item_description, "\n")] = 0;
 			printf("Input Quantity: ");
 			scanf("%s", item_quantity);
