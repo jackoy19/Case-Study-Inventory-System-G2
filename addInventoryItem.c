@@ -5,7 +5,7 @@ void addInventoryItem(){
     int item_id;
 	char item_description[50], item_expirydate[50];
 	char temp;
-	double item_price;
+	char item_price[100] = "";
 	char input[6];
 	char item_quantity[100] = "";
 	int length, i;
@@ -22,9 +22,7 @@ void addInventoryItem(){
 			printf("\nItem ID already exists in inventory!\n\n");
 		}
 		else
-		{
-			{
-			
+		{			
 			printf("Input Item Description: ");
 			// scanf("%c", &temp);
 			fgets(item_description, 50, stdin);
@@ -37,16 +35,24 @@ void addInventoryItem(){
 					{
            					goto inv;
            					exit(1);
-       					}					
-			}
-			if (item_quantity >= 0)
+       					}	
+			int itemquantity = atoi(item_quantity);			   				
+			if (itemquantity >= 0)
 			{
 				printf("Input Expiry Date (yyyy-mm-dd or -): ");
 				scanf("%c", &temp);
 				fgets(item_expirydate, 50, stdin);
 				item_expirydate[strcspn(item_expirydate, "\n")] = 0;
-				printf("Input Item Price: ");
-				scanf("%lf", &item_price);
+				printf("Input Item Price: ");								
+				scanf("%s", item_price);
+				length = strlen (item_price);
+    				for (i=0;i<length; i++)
+					if (! (isdigit(item_price[i]) || '.' == item_price[i]))
+						{
+           						goto inv;
+           						exit(1);
+       						}				
+				double itemprice = atof(item_price);																								
 				if (item_price > 0)
 				{
 					
@@ -56,7 +62,7 @@ void addInventoryItem(){
 					fp = fopen("Inventory_ST_NoQuote_NoBOM.csv", "a+");
 					
 					char all[1000];
-                    snprintf(all,256,"%d,%s,%d,%s,%.2lf\n", item_id, item_description, item_quantity, item_expirydate, item_price);
+                    snprintf(all,256,"%d,%s,%d,%s,%.2lf\n", item_id, item_description, itemquantity, item_expirydate, itemprice);
 
 					/* Write in the line number it returns, if Item Id to be added 
 					  is highest number(lineNum returns 0) add on the bottom */
@@ -64,7 +70,7 @@ void addInventoryItem(){
 						fclose(fp);
 						writeToLine(all,&lineNum);
 					} else {
-						fprintf(fp, "\n%d,%s,%d,%s,%.2lf", item_id, item_description, item_quantity, item_expirydate, item_price);
+						fprintf(fp, "\n%d,%s,%d,%s,%.2lf", item_id, item_description, itemquantity, item_expirydate, itemprice);
 						fclose(fp);
 					}
 					printf("\nAn item has been succesfully added!\n");
@@ -80,6 +86,6 @@ void addInventoryItem(){
 	}
 	else {
 		inv:
-		printf("Input value is invalid.\n");
+		printf("\nInput value is invalid.\n");
 	}
 }
