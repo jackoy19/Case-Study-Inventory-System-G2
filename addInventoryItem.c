@@ -26,7 +26,7 @@ void addInventoryItem()
 		{
 			printf("Input Item Description: ");
 			// scanf("%c", &temp);
-			fgets(item_description, 41, stdin);
+			fgets(item_description, 40, stdin);
 			item_description[strcspn(item_description, "\n")] = 0;
 			printf("Input Quantity: ");
 			scanf("%s", item_quantity);
