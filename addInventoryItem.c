@@ -48,6 +48,9 @@ void addInventoryItem()
 				if (length != 1 && length != 10) {
 					goto inv;
 				}
+				if(length == 1 && item_expirydate[0] == '-'){
+					goto jump;
+				}
 				for (i = 0; i < length; i++)
 				{
 					if (i == 4 || i == 7)
@@ -57,14 +60,7 @@ void addInventoryItem()
 							goto inv;
 						}
 					}
-					else if (i <= 3)
-					{
-						if (! (isdigit(item_expirydate[i]) ) )
-						{
-							goto inv;
-						}
-					}
-					else if (i <= 9)
+					else if (i <= 3 || i <= 9)
 					{
 						if (! (isdigit(item_expirydate[i]) ) )
 						{
@@ -72,7 +68,7 @@ void addInventoryItem()
 						}
 					}
 				}
-
+				jump:
 				printf("Input Item Price: ");
 				scanf("%s", item_price);
 				length = strlen(item_price);
