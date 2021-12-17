@@ -34,6 +34,7 @@ void viewInvList()
 			strcpy(details[i], lineptr); //copy the each values on the details array
 			lineptr = strtok(NULL, ",");
 		}
+		//printing of item details
 		printf("%-9s %-39s %-9s %-19s %-s", details[0], details[1], details[2], details[3], details[4]);
 		i = 0;
 	}
