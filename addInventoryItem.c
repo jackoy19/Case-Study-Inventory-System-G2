@@ -1,8 +1,9 @@
 #include "getPositionSort.c"
 #include "writeToLine.c"
 
-void addInventoryItem(){
-    int item_id;
+void addInventoryItem()
+{
+	int item_id;
 	char item_description[50], item_expirydate[50];
 	char temp;
 	char item_price[100] = "";
@@ -22,70 +23,81 @@ void addInventoryItem(){
 			printf("\nItem ID already exists in inventory!\n\n");
 		}
 		else
-		{			
+		{
 			printf("Input Item Description: ");
 			// scanf("%c", &temp);
 			fgets(item_description, 50, stdin);
 			item_description[strcspn(item_description, "\n")] = 0;
 			printf("Input Quantity: ");
 			scanf("%s", item_quantity);
-			length = strlen (item_quantity);
-    			for (i=0;i<length; i++)
+			length = strlen(item_quantity);
+			for (i = 0; i < length; i++)
 				if (!isdigit(item_quantity[i]))
-					{
-           					goto inv;
-           					exit(1);
-       					}	
-			int itemquantity = atoi(item_quantity);			   				
+				{
+					goto inv;
+				}
+			int itemquantity = atoi(item_quantity);
 			if (itemquantity >= 0)
 			{
 				printf("Input Expiry Date (yyyy-mm-dd or -): ");
 				scanf("%c", &temp);
 				fgets(item_expirydate, 50, stdin);
 				item_expirydate[strcspn(item_expirydate, "\n")] = 0;
-				printf("Input Item Price: ");								
+				printf("Input Item Price: ");
 				scanf("%s", item_price);
-				length = strlen (item_price);
-    				for (i=0;i<length; i++)
-					if (! (isdigit(item_price[i]) || '.' == item_price[i]))
-						{
-           						goto inv;
-           						exit(1);
-       						}				
-				double itemprice = atof(item_price);																								
+				length = strlen(item_price);
+
+				// returns false if position of period in the input is different
+				if (! (strchr( input, '.' ) - strrchr( input, '.' ) )  == 0 ) {
+					goto inv;
+				}
+
+				for (i = 0; i < length; i++)
+					if (!(isdigit(item_price[i]) || '.' == item_price[i]))
+					{
+						goto inv;
+					}
+				
+				double itemprice = atof(item_price);
 				if (item_price > 0)
 				{
-					
+
 					int lineNum = getPositionSort(&item_id); //get Line number position on inventory file
 
 					FILE *fp;
 					fp = fopen("Inventory_ST_NoQuote_NoBOM.csv", "a+");
-					
+
 					char all[1000];
-                    snprintf(all,256,"%d,%s,%d,%s,%.2lf\n", item_id, item_description, itemquantity, item_expirydate, itemprice);
+					snprintf(all, 256, "%d,%s,%d,%s,%.2lf\n", item_id, item_description, itemquantity, item_expirydate, itemprice);
 
 					/* Write in the line number it returns, if Item Id to be added 
 					  is highest number(lineNum returns 0) add on the bottom */
-					if (lineNum > 0) {
+					if (lineNum > 0)
+					{
 						fclose(fp);
-						writeToLine(all,&lineNum);
-					} else {
+						writeToLine(all, &lineNum);
+					}
+					else
+					{
 						fprintf(fp, "\n%d,%s,%d,%s,%.2lf", item_id, item_description, itemquantity, item_expirydate, itemprice);
 						fclose(fp);
 					}
 					printf("\nAn item has been succesfully added!\n");
 				}
-				else {
+				else
+				{
 					goto inv;
 				}
 			}
-			else {
+			else
+			{
 				goto inv;
 			}
 		}
 	}
-	else {
-		inv:
+	else
+	{
+	inv:
 		printf("\nInput value is invalid.\n");
 	}
 }
