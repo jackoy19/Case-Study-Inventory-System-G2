@@ -76,9 +76,35 @@ void updateItem()
                 if (item_quantity >= 0)
                 {
                     printf("Input Expiry Date (yyyy-mm-dd or -): ");
-                    scanf("%c", &temp);
+                    // scanf("%c", &temp);
+                    fflush(stdin);
                     fgets(item_expirydate, 50, stdin);
                     item_expirydate[strcspn(item_expirydate, "\n")] = 0;
+                    length = strlen(item_expirydate);
+                    if (length != 1 && length != 10) {
+                        goto inv;
+                    }
+                    if(length == 1 && item_expirydate[0] == '-'){
+                        goto jump;
+                    }
+                    for (i = 0; i < length; i++)
+                    {
+                        if (i == 4 || i == 7)
+                        {
+                            if (item_expirydate[i] != '-')
+                            {
+                                goto inv;
+                            }
+                        }
+                        else if (i <= 3 || i <= 9)
+                        {
+                            if (! (isdigit(item_expirydate[i]) ) )
+                            {
+                                goto inv;
+                            }
+                        }
+                    }
+                    jump:
                     printf("Input Item Price: ");
                     scanf("%lf", &item_price);
                     if (item_price > 0)
