@@ -59,7 +59,7 @@ void addInventoryItem()
 					}
 				
 				double itemprice = atof(item_price);
-				if (item_price > 0)
+				if (itemprice > 0)
 				{
 
 					int lineNum = getPositionSort(&item_id); //get Line number position on inventory file
