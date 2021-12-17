@@ -2,36 +2,53 @@
 #include "writeToLine.c"
 
 void addInventoryItem(){
-    int item_id, item_quantity;
+    int item_id;
 	char item_description[50], item_expirydate[50];
 	char temp;
-	char *itdp = item_description, *itep = item_expirydate;
 	double item_price;
 	char input[6];
+	char item_quantity[100] = "";
+	int length, i;
 
 	fflush(stdin);
 	printf("Input Item ID: ");
 	fgets(input, 7, stdin);
 	item_id = atoi(input);
 
-	if ((item_id >= 11101) && (item_id <= 69999)) {
-		if (funcExist(&item_id) > 0) {
+	if ((item_id >= 11101) && (item_id <= 69999))
+	{
+		if (funcExist(&item_id) > 0)
+		{
 			printf("\nItem ID already exists in inventory!\n\n");
-		} else {
+		}
+		else
+		{
+			{
+			
 			printf("Input Item Description: ");
 			// scanf("%c", &temp);
 			fgets(item_description, 50, stdin);
 			item_description[strcspn(item_description, "\n")] = 0;
 			printf("Input Quantity: ");
-			scanf("%d", &item_quantity);
-			if (item_quantity >= 0 && (item_quantity <= 1000000)) {
+			scanf("%s", item_quantity);
+			length = strlen (item_quantity);
+    			for (i=0;i<length; i++)
+				if (!isdigit(item_quantity[i]))
+					{
+           					goto inv;
+           					exit(1);
+       					}					
+			}
+			if (item_quantity >= 0)
+			{
 				printf("Input Expiry Date (yyyy-mm-dd or -): ");
 				scanf("%c", &temp);
 				fgets(item_expirydate, 50, stdin);
 				item_expirydate[strcspn(item_expirydate, "\n")] = 0;
 				printf("Input Item Price: ");
 				scanf("%lf", &item_price);
-				if (item_price > 0) {
+				if (item_price > 0)
+				{
 					
 					int lineNum = getPositionSort(&item_id); //get Line number position on inventory file
 
