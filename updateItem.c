@@ -74,7 +74,7 @@ void updateItem()
                     }
                 }
                 int itemquantity = atoi(item_quantity);
-                if (item_quantity >= 0)
+                if (itemquantity >= 0)
                 {
                     printf("Input Expiry Date (yyyy-mm-dd or -): ");
                     // scanf("%c", &temp);
