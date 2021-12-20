@@ -129,7 +129,7 @@ void updateItem()
                     {
 
                         char all[1000];
-                        snprintf(all, 1000, "%d,%s,%d,%s,%.2lf\n", item_id, item_description, item_quantity, item_expirydate, item_price);
+                        snprintf(all, 1000, "%d,%s,%d,%s,%.2lf\n", item_id, item_description, itemquantity, item_expirydate, itemprice);
 
                         count = 0;
                         while ((fgets(buffer, BUFFER_SIZE, fptr)) != NULL)
