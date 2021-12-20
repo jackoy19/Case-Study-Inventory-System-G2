@@ -13,49 +13,79 @@ char fileName[] = "Inventory_ST_NoQuote_NoBOM.csv";
 #include "updateItem.c"
 #include "viewInvList.c"
 
+int checkFileExist();
 
+int main()
+{
 
-int main(){
-	
 	char choice[4];
 	int len;
-	
-	do{
-		printf("MAIN MENU\n");
-		printf("[A] Add Inventory Item\n");
-		printf("[B] Update Inventory Item\n");
-		printf("[C] View Inventory List\n");
-		printf("[D] Search Inventory Item\n");
-		printf("[X] Exit Program\n");
- 		
- 		printf("\nPlease input choice: ");
- 		fflush(stdin);
- 		// scanf(" %s", &choice[0]);
+	if (checkFileExist())
+	{
+		do
+		{
+			printf("MAIN MENU\n");
+			printf("[A] Add Inventory Item\n");
+			printf("[B] Update Inventory Item\n");
+			printf("[C] View Inventory List\n");
+			printf("[D] Search Inventory Item\n");
+			printf("[X] Exit Program\n");
 
-		fgets(choice,4,stdin);
-		int len = strcspn(choice, "\r\n");
-		
-		if(len > 1 || choice == NULL){
-			printf("\nPlease input valid choice!\n\n");
-		} else {
-			printf("\n");
+			printf("\nPlease input choice: ");
+			fflush(stdin);
+			// scanf(" %s", &choice[0]);
 
-			switch(toupper(choice[0])){
-				case 'A': addInventoryItem();
-					break;
-				case 'B': updateItem();
-					break;
-				case 'C': viewInvList();
-						printf("\n");
-					break;
-				case 'D': searchItem();
-					break;
-				case 'X': printf("TERMINATED");
-					break;
-				default: printf("Please input valid choice!\n\n");
-					break;
+			fgets(choice, 4, stdin);
+			int len = strcspn(choice, "\r\n");
+
+			if (len > 1 || choice == NULL)
+			{
+				printf("\nPlease input valid choice!\n\n");
 			}
-		}
+			else
+			{
+				printf("\n");
+
+				switch (toupper(choice[0]))
+				{
+				case 'A':
+					addInventoryItem();
+					break;
+				case 'B':
+					updateItem();
+					break;
+				case 'C':
+					viewInvList();
+					printf("\n");
+					break;
+				case 'D':
+					searchItem();
+					break;
+				case 'X':
+					printf("TERMINATED");
+					break;
+				default:
+					printf("Please input valid choice!\n\n");
+					break;
+				}
+			}
+		} while (toupper(choice[strcspn(choice, "\r\n") - 1]) != 'X' || strcspn(choice, "\r\n") > 1);
 	}
-	while(toupper(choice[strcspn(choice,"\r\n") - 1]) != 'X' || strcspn(choice, "\r\n") > 1);	
+	else
+	{
+		printf("\nUnable to open file.\n");
+        printf("Please check whether FILE EXISTS and you have read/write privilege.\n");
+	}
+}
+
+int checkFileExist(){
+	FILE *fptr = fopen(fileName, "r");
+
+    /* fopen() return NULL if unable to open file in given mode. */
+    if (fptr == NULL)
+    {
+        return 0;
+    }
+	fclose(fptr);
+	return 1;
 }
