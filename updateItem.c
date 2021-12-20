@@ -39,7 +39,7 @@ void updateItem()
         fflush(stdin);
 
         int item_id;
-        char item_description[41], item_expirydate[50];
+        char item_description[42], item_expirydate[50];
         char temp;
         char *itdp = item_description, *itep = item_expirydate;
         char item_price[100] = "";
@@ -60,7 +60,10 @@ void updateItem()
             {
                 printf("Input Item Description: ");
                 scanf("%c", &temp);
-                fgets(item_description, 40, stdin);
+                fgets(item_description, 42, stdin);
+                if(strcspn(item_description, "\n") > 40){
+				    goto inv;
+			    }
                 item_description[strcspn(item_description, "\n")] = 0;
                 printf("Input Quantity: ");
                 scanf("%s", item_quantity);
