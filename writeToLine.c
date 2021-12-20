@@ -16,7 +16,7 @@ void writeToLine(char *myString, int *lineNum)
         /* Unable to open file hence exit */
         printf("\nUnable to open file.\n");
         printf("Please check whether file exists and you have read/write privilege.\n");
-        exit(0);
+        return;
     }
     /* Remove extra new line character from stdin */
     fflush(stdin);
