@@ -81,7 +81,7 @@ int main()
 int checkFileExist(){
 	FILE *fptr = fopen(fileName, "r");
 
-    /* fopen() return NULL if unable to open file in given mode. */
+    // NULL if file does not exist
     if (fptr == NULL)
     {
         return 0;
