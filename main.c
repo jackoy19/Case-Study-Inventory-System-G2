@@ -3,12 +3,17 @@
 #include <string.h>
 #include <conio.h>
 #include <ctype.h>
+
+char fileName[] = "Inventory_ST_NoQuote_NoBOM.csv";
+
 #include "funcExist.c"
 #include "getLine.c"
 #include "addInventoryItem.c"
 #include "searchItem.c"
 #include "updateItem.c"
 #include "viewInvList.c"
+
+
 
 int main(){
 	

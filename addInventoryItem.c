@@ -92,7 +92,7 @@ void addInventoryItem()
 					int lineNum = getPositionSort(&item_id); //get Line number position on inventory file
 
 					FILE *fp;
-					fp = fopen("Inventory_ST_NoQuote_NoBOM.csv", "a+");
+					fp = fopen(fileName, "a+");
 
 					char all[1000];
 					snprintf(all, 256, "%d,%s,%d,%s,%.2lf\n", item_id, item_description, itemquantity, item_expirydate, itemprice);

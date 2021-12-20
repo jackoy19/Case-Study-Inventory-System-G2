@@ -5,7 +5,7 @@
   returns 0 if Item iD is the highest number in inventory */
 int getPositionSort(int* item_id){
     int lineOnFile = 1;
-    FILE *fptr = fopen("Inventory_ST_NoQuote_NoBOM.csv", "r");
+    FILE *fptr = fopen(fileName, "r");
     
     char line[256];
     char item[6];

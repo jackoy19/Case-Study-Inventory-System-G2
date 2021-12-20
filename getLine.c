@@ -1,7 +1,7 @@
 void getLine(int *lineNum)
 {
     int lineOnFile = 1;
-    FILE *fptr = fopen("Inventory_ST_NoQuote_NoBOM.csv", "r");
+    FILE *fptr = fopen(fileName, "r");
     char line[255];
     int i = 0;
     char details[5][120];
